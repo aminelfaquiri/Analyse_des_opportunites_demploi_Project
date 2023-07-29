@@ -1,7 +1,3 @@
-create database emploi_db
-
-use emploi_db
-
 CREATE TABLE [job_opportunity] (
     [Id] INT NOT NULL,
     [Company_id] INT NOT NULL,
