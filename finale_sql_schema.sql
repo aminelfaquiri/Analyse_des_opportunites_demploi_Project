@@ -4,12 +4,12 @@ CREATE TABLE [job_opportunity] (
     [Location_id] INT NOT NULL,
     [Country_id] INT NOT NULL,
     [Job_Titles_id] INT NOT NULL,
-    [Job_Type] VARCHAR(50) NOT NULL,
-    [Experience_level] VARCHAR(50) NOT NULL,
+    [Job_Type] VARCHAR(50) NOT NULL CHECK ([Job_Type] IN ('Full Time', 'Part Time')),
+    [Experience_level] VARCHAR(50) NOT NULL CHECK ([Experience_level] IN ('Senior-level','Mid-level','Entry-level','Not-Specified','Executive-level')),
     [AVG_Salary] FLOAT NOT NULL,
     [Negotiation] BIT NOT NULL,
     [custom_asterisk] BIT NOT NULL,
-    [job_role] VARCHAR(50) NOT NULL,
+    [job_role] VARCHAR(50) NOT NULL CHECK ([job_role] IN ('data scientist','data engineer','data Analyste','IA','big data','other')),
     CONSTRAINT [PK_job_opportunity] PRIMARY KEY CLUSTERED ([Id] ASC)
 )
 
