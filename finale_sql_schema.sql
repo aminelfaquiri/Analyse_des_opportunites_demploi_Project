@@ -3,7 +3,6 @@ CREATE TABLE [job_opportunity] (
     [Company_id] INT NOT NULL,
     [Location_id] INT NOT NULL,
     [Country_id] INT NOT NULL,
-    [Job_Titles_id] INT NOT NULL,
     [Job_Type] VARCHAR(50) NOT NULL CHECK ([Job_Type] IN ('Full Time', 'Part Time')),
     [Experience_level] VARCHAR(50) NOT NULL CHECK ([Experience_level] IN ('Senior-level','Mid-level','Entry-level','Not-Specified','Executive-level')),
     [AVG_Salary] FLOAT NOT NULL,
@@ -42,13 +41,6 @@ CREATE TABLE [Facilities] (
     [Name] VARCHAR(1000) NOT NULL,
     CONSTRAINT [PK_Facilities] PRIMARY KEY CLUSTERED ([Id] ASC)
 )
-
-CREATE TABLE [Job_Titles] (
-    [Id] INT NOT NULL,
-    [Name] VARCHAR(1000) NOT NULL,
-    CONSTRAINT [PK_Job_Titles] PRIMARY KEY CLUSTERED ([Id] ASC)
-)
-
 CREATE TABLE [Requirment_bridge] (
     [job_opportunity_id] INT NOT NULL,
     [Requirment_of_the_company_id] INT NOT NULL,
@@ -77,11 +69,6 @@ ALTER TABLE [job_opportunity] WITH CHECK ADD CONSTRAINT [FK_job_opportunity_Coun
 REFERENCES [Country] ([id])
 
 ALTER TABLE [job_opportunity] CHECK CONSTRAINT [FK_job_opportunity_Country_id]
-
-ALTER TABLE [job_opportunity] WITH CHECK ADD CONSTRAINT [FK_job_opportunity_Job_Titles_id] FOREIGN KEY([Job_Titles_id])
-REFERENCES [Job_Titles] ([Id])
-
-ALTER TABLE [job_opportunity] CHECK CONSTRAINT [FK_job_opportunity_Job_Titles_id]
 
 ALTER TABLE [Requirment_bridge] WITH CHECK ADD CONSTRAINT [FK_Requirment_bridge_Requirment_of_the_company_id] FOREIGN KEY([Requirment_of_the_company_id])
 REFERENCES [Requirment_of_the_company] ([Id])
